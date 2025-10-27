@@ -4,6 +4,7 @@ import java.time.ZonedDateTime
 
 data class Event(
     val id: String,
+    val calendarId: String,
     val title: String,
     val description: String?,
     val startTime: ZonedDateTime,
@@ -12,7 +13,8 @@ data class Event(
     val location: String?,
     val people: String?,
     val style: EventStyle?,
-    val lastModified: Long // UTC
+    val isDeleted: Boolean = false, // allow soft deletion
+    val lastModifiedUtc: Long
 )
 
 data class EventStyle(
