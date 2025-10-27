@@ -19,7 +19,7 @@ class SyncService (
         clientChanges.events.forEach { clientEvent ->
             val serverEvent = eventRepository.findById(clientEvent.id)
             if (serverEvent == null
-            || clientEvent.lastModified > serverEvent.lastModified) {
+            || clientEvent.lastModifiedUtc > serverEvent.lastModifiedUtc) {
                 eventRepository.save(clientEvent)
             }
         }
@@ -27,7 +27,7 @@ class SyncService (
         clientChanges.calendars.forEach { clientCalendar ->
             val serverCalendar = calendarRepository.findById(clientCalendar.id)
             if (serverCalendar == null
-            || clientCalendar.lastModified > serverCalendar.lastModified) {
+            || clientCalendar.lastModifiedUtc > serverCalendar.lastModifiedUtc) {
                 calendarRepository.save(clientCalendar)
             }
         }
